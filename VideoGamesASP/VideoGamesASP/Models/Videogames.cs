@@ -46,8 +46,22 @@ namespace VideoGamesASP.Models
             set { pegi = (int)value; }
         }
 
-       
 
+        public void Delete()
+        {
+            try
+            {
+                GameContext context = new GameContext();
+
+                context.Entry(this).State = System.Data.Entity.EntityState.Deleted;
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public static List<Videogames> GetRankings()
         {
             List<Videogames> games = new List<Videogames>();
@@ -116,29 +130,19 @@ namespace VideoGamesASP.Models
 
         public void Update()
         {
-            try
-            {
-                GameContext context = new GameContext();
-                context.Entry(this).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-        public void Save()
-        {
             bool create = this.id == 0;
             try
             {
                 GameContext context = new GameContext();
-
-                context.Entry(this).State = System.Data.Entity.EntityState.Added;
-
-
+                if (create)
+                {
+                    context.Entry(this).State = System.Data.Entity.EntityState.Added;
+                }
+                else
+                {
+                    context.Entry(this).State = System.Data.Entity.EntityState.Modified;
+                }
+               
                 context.SaveChanges();
             }
             catch (Exception)
@@ -146,6 +150,8 @@ namespace VideoGamesASP.Models
 
                 throw;
             }
+
         }
+        
     }
 }

@@ -36,6 +36,19 @@ namespace VideoGamesASP.Controllers
             Videogames game = new Videogames();
             return View("~/Views/Home/GameForm.cshtml", game);
         }
+
+        public ActionResult Borrar(int id = 0)
+        {
+            //Eleminar datos de la db
+            Videogames game = Videogames.GetGame(id);
+            if (game != null)
+            {
+                //borrar
+                game.Delete();
+            }
+
+            return Redirect("~/Home");
+        }
         public ActionResult Editar(int id = 0)
         {
             Videogames game = Videogames.GetGame(id);
@@ -45,7 +58,7 @@ namespace VideoGamesASP.Controllers
             }
             else
             {
-                return View("~/Views/Home/GameForm.cshtml", game);
+                return View("~/Views/home/GameForm.cshtml", game);
             }
         }
         public ActionResult ranking()
@@ -74,7 +87,7 @@ namespace VideoGamesASP.Controllers
             Videogames game =new Videogames();
             return View(game);
         }
-        public ActionResult guardar(Videogames game)
+        public ActionResult Guardar(Videogames game)
         {
             //guardar datos en db
             game.Update();
