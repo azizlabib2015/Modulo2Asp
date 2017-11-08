@@ -1,0 +1,14 @@
+﻿@model VideoGamesASP.Models.Videogames
+
+@using (Html.BeginForm("buscar", "Home", FormMethod.Post, new { id = "frm-game" }))
+{
+            <div class="form-group">
+                @Html.LabelFor(x => x.name)
+                @Html.TextBoxFor(x => x.name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.name, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+   }

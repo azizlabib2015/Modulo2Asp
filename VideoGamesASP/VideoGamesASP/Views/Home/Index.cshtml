@@ -1,0 +1,44 @@
+﻿@model List<VideoGamesASP.Models.Videogames>
+
+
+<div>
+    <h3>@{ ViewBag.title = "Game List";}</h3>
+    <a href="~/home/crear/" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-plus"></span>New Game
+    </a>
+    <a href="~/home/ranking/" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-plus"></span>Rankings
+    </a>
+    <a href="~/home/SearchGame/" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-plus"></span>Search Game
+    </a>
+</div>
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            
+            <th scope="col">Name</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (VideoGamesASP.Models.Videogames game in Model)
+        {
+            <tr>
+                
+                <td>@game.name</td>
+                <td>@game.publisher</td>
+                <td>@game.Genre</td>
+                <td>
+                    <a href="~/Home/ver/@game.id" class="btn btn-info btn-lg">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </a>
+                    
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

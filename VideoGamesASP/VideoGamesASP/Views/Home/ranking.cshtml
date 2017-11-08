@@ -1,0 +1,26 @@
+﻿@model List<VideoGamesASP.Models.Videogames>
+
+
+<div>
+    <h3>@{ ViewBag.title = "Ranking List";}</h3>
+    
+</div>
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+
+            <th scope="col">Name</th>
+            <th scope="col">Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (VideoGamesASP.Models.Videogames game in Model)
+        {
+            <tr>
+
+                <td>@game.name</td>
+                <td>@game.score</td>
+            </tr>
+        }
+    </tbody>
+</table>
